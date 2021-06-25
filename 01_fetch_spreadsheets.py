@@ -1,7 +1,5 @@
 import os
 import csv
-import json
-from pprint import pprint
 import pandas as pd
 from googleapiclient import discovery
 from google_auth_oauthlib.flow import InstalledAppFlow
@@ -10,6 +8,7 @@ from google.auth.transport.requests import Request
 
 
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
+CVS_DIR = 'csv_input_data'
 credentials = None
 
 # spreadsheets authentication
@@ -44,14 +43,24 @@ def get_range(range):
 
 # function that saves range data in csv file
 def save_range(range):
-    input_data_dir = 'csv_input_data'
+    # get range data
     data = get_range(range)
-    filename = '{}/{}.csv'.format(input_data_dir, range.split('!')[0])
-    df = pd.DataFrame(data['values'][1:], columns = data['values'][0])
+
+    # generate filename from range name
+    filename = '{}/{}.csv'.format(CVS_DIR, range.split('!')[0])
+
+    # column names
+    columns = data['values'][0]
+    # actual database
+    thedata = data['values'][1:]
+
+    # create dataframe and export it as csv
+    df = pd.DataFrame(thedata, columns=columns)
     df.to_csv(filename,
               index=False,
               quoting=csv.QUOTE_MINIMAL,
               header=False)
+
 
 # save spreadsheet data for each sheet
 ranges = ['transactions!A:D', 'clients!A:C', 'managers!A:C', 'leads!A:F']
