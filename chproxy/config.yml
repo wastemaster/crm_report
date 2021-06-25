@@ -1,0 +1,17 @@
+server:
+  http:
+    listen_addr: ":9090"
+    allowed_networks: ["172.17.0.0/24"]
+
+users:
+  - name: "user"
+    password: "password"
+    to_cluster: "default"
+    to_user: "default"
+    allow_cors: true
+
+# by default each cluster has `default` user which can be overridden by section `users`
+clusters:
+  - name: "default"
+    nodes: ["clickhouse-server:8123"]
+
