@@ -7,4 +7,4 @@ DataStudio report https://datastudio.google.com/reporting/92bcc7c9-04df-4833-8b8
 
 * учитываются только положительные транзакции (m_real_amount > 0)
 * пустой d_utm_source заменяется на "not set"
-* добавлены нули перед идентификатором d_manager, "manager #9" -> "manager #09" (для более удобной сортировки)
+* добавлен ноль перед идентификатором d_manager, "manager #9" -> "manager #09" (для более удобной сортировки)

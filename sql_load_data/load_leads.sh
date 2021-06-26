@@ -19,6 +19,9 @@ CREATE TABLE IF NOT EXISTS crm_report.leads (
 ) ENGINE = MergeTree()
 ORDER BY created_at"
 
+# some dirty cleaning inside csv
+sed -i 's/ycard#!\/tproduct\/225696739-1498486363994/ycard/g' csv_input_data/leads.csv
+
 cat csv_input_data/leads.csv | docker run -i --rm \
    --link clickhouse_1:clickhouse-server \
    yandex/clickhouse-client \
