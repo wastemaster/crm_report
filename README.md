@@ -1,8 +1,11 @@
 Job description https://tomsk.hh.ru/vacancy/44904368?query=data%20analyst%5C
+
 Test task https://docs.google.com/document/d/1OOgPhLCZgtEsqUt47nHAFqFmOvEEL949mwtB-hj8ODk/edit#
+
 Dataset https://docs.google.com/spreadsheets/d/1Ycg7zTxds9DZnDvTrFcyNNKuTUxg6Yy6WF0a8Wc02WQ/edit#gid=0
 
 Result report https://docs.google.com/spreadsheets/d/14fDZbjhGSCy6W6ph8-6nxpndWU2u0dZXNdaUJ0uYMM8/edit?usp=sharing
+
 DataStudio report https://datastudio.google.com/reporting/92bcc7c9-04df-4833-8b8b-f7e52c26ae33
 
 * учитываются только положительные транзакции (m_real_amount > 0)
