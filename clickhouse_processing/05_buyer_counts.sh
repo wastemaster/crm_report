@@ -14,7 +14,7 @@ CREATE TABLE crm_report.buyer_counts (
   d_utm_source FixedString(42),
   d_club FixedString(11),
   d_manager FixedString(11),
-  buyer_count Int16 comment 'количество покупателей (кто купил в течение недели после заявки)'
+  buyer_count UInt32 comment 'количество покупателей (кто купил в течение недели после заявки)'
 ) ENGINE = MergeTree()
 ORDER BY date"
 

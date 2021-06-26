@@ -3,3 +3,4 @@ credentials.json
 clickhouse/data
 clickhouse/log
 csv_input_data/
+__pycache__/

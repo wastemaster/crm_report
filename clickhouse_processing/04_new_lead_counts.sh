@@ -14,7 +14,7 @@ CREATE TABLE crm_report.new_lead_counts (
   d_utm_source FixedString(42),
   d_club FixedString(11),
   d_manager FixedString(11),
-  new_lead_count Int16 comment 'количество новых заявок (не было заявок и покупок от этого клиента раньше)'
+  new_lead_count UInt32 comment 'количество новых заявок (не было заявок и покупок от этого клиента раньше)'
 ) ENGINE = MergeTree()
 ORDER BY date"
 

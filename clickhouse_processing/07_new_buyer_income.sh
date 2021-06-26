@@ -14,7 +14,7 @@ CREATE TABLE crm_report.new_buyer_income (
   d_utm_source FixedString(42),
   d_club FixedString(11),
   d_manager FixedString(11),
-  new_buyer_income Int16 comment 'доход от покупок новых покупателей'
+  new_buyer_income UInt32 comment 'доход от покупок новых покупателей'
 ) ENGINE = MergeTree()
 ORDER BY date"
 
