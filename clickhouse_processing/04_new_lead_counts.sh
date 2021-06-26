@@ -52,6 +52,7 @@ AND l.l_client_id IN (
             t.created_at
         FROM crm_report.transactions AS t
         WHERE t.l_client_id != '00000000-0000-0000-0000-000000000000'
+        AND t.m_real_amount > 0
         ORDER BY t.created_at ASC) as et
     ON (el.l_client_id = et.l_client_id)
     WHERE

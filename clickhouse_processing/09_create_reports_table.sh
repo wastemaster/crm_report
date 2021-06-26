@@ -29,7 +29,16 @@ docker run -it --rm --link clickhouse_1:clickhouse-server \
              --host clickhouse-server \
              --query "
 INSERT INTO crm_report.lead_report
-  (date, d_utm_source, d_club, d_manager, lead_count, unqualified_lead_count, new_lead_count)
+  (date,
+  d_utm_source,
+  d_club,
+  d_manager,
+  lead_count,
+  unqualified_lead_count,
+  new_lead_count,
+  buyer_count,
+  new_buyer_count,
+  new_buyer_income)
 SELECT
    d.date,
    d.d_utm_source,
@@ -37,7 +46,10 @@ SELECT
    d.d_manager,
    l.lead_count,
    ul.unqualified_lead_count,
-   nl.new_lead_count
+   nl.new_lead_count,
+   b.buyer_count,
+   nb.new_buyer_count,
+   nbi.new_buyer_income
 FROM crm_report.dimensions as d
 LEFT JOIN crm_report.lead_counts as l
 ON (d.date=l.date)
@@ -56,4 +68,22 @@ ON (d.date=nl.date)
 AND (d.d_utm_source=nl.d_utm_source)
 AND (d.d_club=nl.d_club)
 AND (d.d_manager=nl.d_manager)
+
+LEFT JOIN crm_report.buyer_counts as b
+ON (d.date=b.date)
+AND (d.d_utm_source=b.d_utm_source)
+AND (d.d_club=b.d_club)
+AND (d.d_manager=b.d_manager)
+
+LEFT JOIN crm_report.new_buyer_counts as nb
+ON (d.date=nb.date)
+AND (d.d_utm_source=nb.d_utm_source)
+AND (d.d_club=nb.d_club)
+AND (d.d_manager=nb.d_manager)
+
+LEFT JOIN crm_report.new_buyer_income as nbi
+ON (d.date=nbi.date)
+AND (d.d_utm_source=nbi.d_utm_source)
+AND (d.d_club=nbi.d_club)
+AND (d.d_manager=nbi.d_manager)
 "
