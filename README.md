@@ -11,12 +11,22 @@ DataStudio report https://datastudio.google.com/reporting/92bcc7c9-04df-4833-8b8
 * значение d_utm_source "ycard#!/tproduct/225696739-1498486363994" заменено на "ycard"
 
 ## Порядок установки
- 
+
 ```
+# Создаем окружение
+conda create --name crm_report --file requirements.txt
+# Активируем окружение
+conda activate crm_report
+# Загружаем исходные данные из google spreadsheet
 python 01_fetch_spreadsheets.py
+# Закускаем локальный clickhouse
 bash 02_start_clickhouse.sh
+# Заливаем данные в clickhouse
 bash 03_run_clickhouse_import.sh
+# Считаем метрики
 bash 04_process_data.sh
+# (опционально ) Запускаем chproxy (прокси для кликхауса)
 bash 05_run_chproxy.sh
+# Експортируем структурированные данные из clickhouse в google spreadsheet
 python 06_export_data.py
 ```
