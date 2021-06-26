@@ -1,6 +1,5 @@
 docker run -d \
    --rm \
-   --restart=always \
    --name clickhouse_1 \
    --ulimit nofile=262144:262144 \
    -p 127.0.0.1:8123:8123 -p 127.0.0.1:9000:9000 \
