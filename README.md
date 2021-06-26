@@ -9,3 +9,14 @@ DataStudio report https://datastudio.google.com/reporting/92bcc7c9-04df-4833-8b8
 * пустой d_utm_source заменяется на "not set"
 * добавлен ноль перед идентификатором d_manager, "manager #9" -> "manager #09" (для более удобной сортировки)
 * значение d_utm_source "ycard#!/tproduct/225696739-1498486363994" заменено на "ycard"
+
+## Порядок установки
+ 
+```
+python 01_fetch_spreadsheets.py
+bash 02_start_clickhouse.sh
+bash 03_run_clickhouse_import.sh
+bash 04_process_data.sh
+bash 05_run_chproxy.sh
+python 06_export_data.py
+```
