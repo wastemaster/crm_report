@@ -8,35 +8,37 @@ Result report https://docs.google.com/spreadsheets/d/14fDZbjhGSCy6W6ph8-6nxpndWU
 
 DataStudio report https://datastudio.google.com/reporting/92bcc7c9-04df-4833-8b8b-f7e52c26ae33
 
-* учитываются только положительные транзакции (m_real_amount > 0)
-* пустой d_utm_source заменяется на "not set"
-* добавлен ноль перед идентификатором d_manager, "manager #9" -> "manager #09" (для более удобной сортировки)
-* значение d_utm_source "ycard#!/tproduct/225696739-1498486363994" заменено на "ycard"
+## Cleaning steps
 
-## Порядок установки
+* Filtered out transactions with negative and zero amounts (m_real_amount <= 0)
+* Empty d_utm_source set to "not set"
+* Added leading zeros in d_manager, "manager #9" -> "manager #09" (for representation purposes)
+* d_utm_source value "ycard#!/tproduct/225696739-1498486363994" replaced with "ycard"
+
+## Setup steps
 
 ```
-# Создаем окружение
+# Create and load environment
 conda create --name crm_report --file requirements.txt
 
-# Активируем окружение
+# Activate environment
 conda activate crm_report
 
-# Загружаем исходные данные из google spreadsheet
+# Loading source data from google spreadsheets to local csv files
 python 01_fetch_spreadsheets.py
 
-# Закускаем локальный clickhouse
+# Starting clickhouse server in docker
 bash 02_start_clickhouse.sh
 
-# Заливаем данные в clickhouse
+# Importing data into clickhouse database
 bash 03_run_clickhouse_import.sh
 
-# Считаем метрики
+# Calculate all the metrics
 bash 04_process_data.sh
 
-# (опционально ) Запускаем chproxy (прокси для кликхауса)
+# Starting chproxy for clickhouse (Optional step)
 bash 05_run_chproxy.sh
 
-# Експортируем структурированные данные из clickhouse в google spreadsheet
+# Export of structured data into google spreadsheet
 python 06_export_data.py
 ```
