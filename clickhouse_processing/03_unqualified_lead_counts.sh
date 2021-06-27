@@ -18,7 +18,7 @@ CREATE TABLE crm_report.unqualified_lead_counts (
 ) ENGINE = MergeTree()
 ORDER BY date"
 
-# fill in lead counts metric
+# fill in unqualified_lead_count metric
 docker run -it --rm --link clickhouse_1:clickhouse-server \
              yandex/clickhouse-client \
              --host clickhouse-server \
